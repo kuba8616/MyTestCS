@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Start" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<PropertyGroup>
+    <!-- <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration> -->
+    <!-- <DeploymentProject>MyApplication</DeploymentProject> -->
+    <!-- <OutputDirectory>$(DeploymentProject)\bin\$(Configuration)</OutputDirectory> -->
+    <SourceFolder>..\MyBuildTest</SourceFolder>    
+  </PropertyGroup>
+
+  <Target Name="Start">
+    <!-- <RemoveDir Directories="$(OutputDirectory)" 
+            Condition="Exists($(OutputDirectory))"></RemoveDir> -->
+            <CallTarget Targets="Build"></CallTarget>
+  </Target>
+  <Target Name="Build">
+    <MSBuild 
+      Projects="$(SourceFolder)\MyBuildTest.sln"
+      Properties="Configuration=Release"
+      Targets="Clean;Build"
+      ContinueOnError="false" >
+    </MSBuild>
+  </Target>
+</Project>
